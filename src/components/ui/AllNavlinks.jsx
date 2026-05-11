@@ -7,6 +7,7 @@ const AllNavlinks = () => {
      <li><MyNavlink href={'/destinations'}>Destinations</MyNavlink></li> 
      <li><MyNavlink href={'/my-bookings'}>My Bookings</MyNavlink></li> 
      <li><MyNavlink href={'/admin'}>Admin</MyNavlink></li> 
+     <li><MyNavlink href={'/new-destination'}>New Destination</MyNavlink></li> 
     </>
   );
 };
