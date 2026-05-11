@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
+
+
+:root{
+
+  --primaryBlue:#15A1BF;
+}
