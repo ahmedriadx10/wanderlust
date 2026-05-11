@@ -1,12 +1,11 @@
-
+import Banner from "@/components/ui/Banner";
 
 const HomePage = () => {
   return (
-    <>
-
-<h2>Home page</h2>
-
-    </>
+    <section>
+      <Banner/>
+      
+    </section>
   );
 };
 
