@@ -47,19 +47,19 @@ const {description,imageURL,departureDate,duration,price,category,country,destin
       <div className="flex justify-between items-center mb-6">
         <Button 
           variant="light" 
-          startContent={<IoIosArrowBack />} 
+  
           className="text-gray-500 font-medium"
         >
           Back to Destinations
         </Button>
         <div className="flex gap-2">
-          <Button variant="bordered" startContent={<MdOutlineModeEdit />} size="sm">
+          <Button variant="bordered"  size="sm">
             Edit
           </Button>
           <Button 
             variant="bordered" 
             color="danger" 
-            startContent={<MdOutlineDeleteOutline />} 
+
             size="sm"
           >
             Cancel
@@ -93,7 +93,7 @@ const {description,imageURL,departureDate,duration,price,category,country,destin
               <span className="text-gray-400 text-sm">(234 reviews)</span>
             </div>
             <Chip 
-              startContent={<HiOutlineClock size={18} />} 
+
               variant="flat" 
               color="default"
             >

@@ -6,6 +6,7 @@ import { IoCalendarNumber, IoLocationSharp } from "react-icons/io5";
 const DestinationCard = ({destination}) => {
   const {description,imageURL,departureDate,duration,price,category,country,destinationName,_id}=destination
   
+  console.log(imageURL)
   return (
     <div>
 
@@ -23,7 +24,7 @@ const DestinationCard = ({destination}) => {
 
 <div className="flex justify-between items-center">
   <h3 className="font-medium text-2xl">{destinationName}</h3>
-  <p><span className="font-bold">${price.toFixed(2)}</span>/person</p>
+  <p><span className="font-bold">${price}</span>/person</p>
 </div>
 
 <div>
