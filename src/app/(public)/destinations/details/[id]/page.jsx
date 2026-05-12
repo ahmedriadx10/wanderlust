@@ -37,7 +37,6 @@ const DestinationDetailsPage =async ({params}) => {
   const {id}=await params
 
 const destination=await destinationsGetById(id)
-console.log(destination)
 
 const {description,imageURL,departureDate,duration,price,category,country,destinationName,_id}=destination
 
