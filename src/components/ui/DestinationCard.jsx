@@ -5,8 +5,9 @@ import { IoCalendarNumber, IoLocationSharp } from "react-icons/io5";
 
 const DestinationCard = ({destination}) => {
   const {description,imageURL,departureDate,duration,price,category,country,destinationName,_id}=destination
+
   
-  console.log(imageURL)
+
   return (
     <div>
 

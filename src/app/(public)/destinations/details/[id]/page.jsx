@@ -29,6 +29,8 @@ import {
 import { IoIosArrowBack } from 'react-icons/io';
 import { BsCheckCircleFill, BsShieldCheck } from 'react-icons/bs';
 import Image from "next/image";
+import { EditModal } from "@/components/ui/EditModal";
+import { DeleteModal } from "@/components/ui/DeleteModal";
 
 const DestinationDetailsPage =async ({params}) => {
 
@@ -53,17 +55,8 @@ const {description,imageURL,departureDate,duration,price,category,country,destin
           Back to Destinations
         </Button>
         <div className="flex gap-2">
-          <Button variant="bordered"  size="sm">
-            Edit
-          </Button>
-          <Button 
-            variant="bordered" 
-            color="danger" 
-
-            size="sm"
-          >
-            Cancel
-          </Button>
+       <EditModal destination={destination}/>
+ <DeleteModal destination={destination} />
         </div>
       </div>
 
