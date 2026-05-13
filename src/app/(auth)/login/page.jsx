@@ -1,10 +1,23 @@
-
+'use client'
 import { SignInForm } from "@/components/client-components/SignInForm";
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import Link from "next/link";
+
 import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
+
+
+
+  const handleSocialSignIn=async()=>{
+  
+  const soicalSignIn=await authClient.signIn.social({
+    provider:'google'
+  })
+  
+  
+  }
   return (
     <section>
       <div className="text-center space-y-5 mx-auto">
@@ -24,7 +37,7 @@ const SignInPage = () => {
         </div>
 
         <div className="flex flex-col gap-4 ">
-          <Button variant="outline" fullWidth className={"rounded-none"}>
+          <Button variant="outline" fullWidth className={"rounded-none"} onPress={handleSocialSignIn}>
             <FcGoogle /> Sign In With Google
           </Button>
           <p className="text-center">

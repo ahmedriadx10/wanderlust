@@ -1,21 +1,40 @@
 "use client";
-import {Button,  FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import {
+  Button,
+  FieldError,
+  Form,
+  Input,
+  Label,
+  TextField,
+} from "@heroui/react";
+import { useFormStatus } from "react-dom";
+import toast from "react-hot-toast";
 
 export function SignInForm() {
+  const { pending, data, method, action } = useFormStatus();
 
-  const handleSubmit=(e)=>{
-e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const formData=new FormData(e.currentTarget)
-const exactFormData=Object.fromEntries(formData.entries())
+    const formData = new FormData(e.currentTarget);
+    const exactFormData = Object.fromEntries(formData.entries());
 
-console.log(exactFormData)
+    console.log(exactFormData);
 
+    const { data, error } = await authClient.signIn.email({
+      ...exactFormData,
+      callbackURL: "/",
+    });
 
-  }
+    if (data) {
+      toast.success(`Log In successfull`);
+    }
 
-
-
+    if (error) {
+      toast.error(`${error?.message}`);
+    }
+  };
 
   return (
     <Form
@@ -23,8 +42,6 @@ console.log(exactFormData)
       render={(props) => <form {...props} data-custom="foo" />}
       onSubmit={handleSubmit}
     >
-
-
       <TextField
         isRequired
         name="email"
@@ -38,7 +55,10 @@ console.log(exactFormData)
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="Enter your email" className={'bg-[#EEEEEE99] rounded-none shadow-none p-3'} />
+        <Input
+          placeholder="Enter your email"
+          className={"bg-[#EEEEEE99] rounded-none shadow-none p-3"}
+        />
         <FieldError />
       </TextField>
 
@@ -62,16 +82,17 @@ console.log(exactFormData)
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter password" className={'bg-[#EEEEEE99] shadow-none rounded-none p-3'} />
+        <Input
+          placeholder="Enter password"
+          className={"bg-[#EEEEEE99] shadow-none rounded-none p-3"}
+        />
         <FieldError />
       </TextField>
 
       <div className="">
-        <Button type="submit" fullWidth className={'rounded-none'}>
-
-Sign In
+        <Button type="submit" fullWidth className={"rounded-none"}>
+          {pending ? <Spinner color="current" /> : "Sign In"}
         </Button>
-      
       </div>
     </Form>
   );
