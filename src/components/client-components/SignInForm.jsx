@@ -3,7 +3,7 @@
 import {Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 
-export function SignUpForm() {
+export function SignInForm() {
 
   const handleSubmit=(e)=>{
 e.prventDefault()
@@ -19,24 +19,8 @@ e.prventDefault()
       render={(props) => <form {...props} data-custom="foo" />}
       onSubmit={handleSubmit}
     >
-           <TextField
-        isRequired
-        name="name"
-        type="text"
-      >
-        <Label>Name</Label>
-        <Input placeholder="Enter your name" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
-        <FieldError />
-      </TextField>
-           <TextField
-        name="image"
-        type="text"
-  
-      >
-        <Label>Image URL</Label>
-        <Input placeholder="Enter image url" className={'bg-[#EEEEEE99] shadow-none rounded-none p-3'} />
-        <FieldError />
-      </TextField>
+
+
       <TextField
         isRequired
         name="email"
@@ -50,7 +34,7 @@ e.prventDefault()
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="Enter your email" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
+        <Input placeholder="Enter your email" className={'bg-[#EEEEEE99] rounded-none shadow-none p-3'} />
         <FieldError />
       </TextField>
 
@@ -74,14 +58,14 @@ e.prventDefault()
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter password" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
+        <Input placeholder="Enter password" className={'bg-[#EEEEEE99] shadow-none rounded-none p-3'} />
         <FieldError />
       </TextField>
 
       <div className="">
         <Button type="submit" fullWidth className={'rounded-none'}>
 
-Create Account
+Sign In
         </Button>
       
       </div>
