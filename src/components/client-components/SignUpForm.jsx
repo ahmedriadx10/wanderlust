@@ -1,17 +1,48 @@
 "use client";
 
-import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Check } from "@gravity-ui/icons";
+import {
+  Button,
+  Description,
+  FieldError,
+  Form,
+  Input,
+  Label,
+  Spinner,
+  TextField,
+} from "@heroui/react";
+import { redirect } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function SignUpForm() {
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit=(e)=>{
-e.prventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  }
+    const formData = new FormData(e.currentTarget);
+    const exactFromData = Object.fromEntries(formData.entries());
 
+    console.log(exactFromData);
 
+    const { error } = await authClient.signUp.email(
+      {
+        ...exactFromData,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Sign Up successfull");
+          redirect("/");
+        },
+      },
+    );
 
+    if (error) {
+      toast.error(`${error?.message}`);
+    }
+  };
 
   return (
     <Form
@@ -19,22 +50,20 @@ e.prventDefault()
       render={(props) => <form {...props} data-custom="foo" />}
       onSubmit={handleSubmit}
     >
-           <TextField
-        isRequired
-        name="name"
-        type="text"
-      >
+      <TextField isRequired name="name" type="text">
         <Label>Name</Label>
-        <Input placeholder="Enter your name" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
+        <Input
+          placeholder="Enter your name"
+          className={"bg-[#EEEEEE99] shadow-none  rounded-none p-3"}
+        />
         <FieldError />
       </TextField>
-           <TextField
-        name="image"
-        type="text"
-  
-      >
+      <TextField name="image" type="text">
         <Label>Image URL</Label>
-        <Input placeholder="Enter image url" className={'bg-[#EEEEEE99] shadow-none rounded-none p-3'} />
+        <Input
+          placeholder="Enter image url"
+          className={"bg-[#EEEEEE99] shadow-none rounded-none p-3"}
+        />
         <FieldError />
       </TextField>
       <TextField
@@ -50,7 +79,10 @@ e.prventDefault()
         }}
       >
         <Label>Email</Label>
-        <Input placeholder="Enter your email" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
+        <Input
+          placeholder="Enter your email"
+          className={"bg-[#EEEEEE99] shadow-none  rounded-none p-3"}
+        />
         <FieldError />
       </TextField>
 
@@ -74,16 +106,17 @@ e.prventDefault()
         }}
       >
         <Label>Password</Label>
-        <Input placeholder="Enter password" className={'bg-[#EEEEEE99] shadow-none  rounded-none p-3'} />
+        <Input
+          placeholder="Enter password"
+          className={"bg-[#EEEEEE99] shadow-none  rounded-none p-3"}
+        />
         <FieldError />
       </TextField>
 
       <div className="">
-        <Button type="submit" fullWidth className={'rounded-none'}>
-
-Create Account
+        <Button type="submit" fullWidth className={"rounded-none"}>
+          {loading ? <Spinner color="current" /> : "Create Account"}
         </Button>
-      
       </div>
     </Form>
   );

@@ -1,12 +1,16 @@
 "use client";
-
-import {Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import {Button,  FieldError, Form, Input, Label, TextField} from "@heroui/react";
 
 export function SignInForm() {
 
   const handleSubmit=(e)=>{
-e.prventDefault()
+e.preventDefault()
+
+const formData=new FormData(e.currentTarget)
+const exactFormData=Object.fromEntries(formData.entries())
+
+console.log(exactFormData)
+
 
   }
 

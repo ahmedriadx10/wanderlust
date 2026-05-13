@@ -13,7 +13,7 @@ const SignupPage = () => {
         </p>
       </div>
 
-      <div className=" my-15 max-w-xl mx-auto w-[90%] shadow border border-zinc-200 rounded-xl p-5">
+      <div className=" my-15 max-w-xl mx-auto w-[90%] shadow border border-zinc-200 rounded-none p-5">
         <SignUpForm />
 
         <div className="flex items-center gap-4 my-4">
