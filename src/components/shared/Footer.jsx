@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-400 px-6 md:px-16 py-16">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-black text-gray-400 mt-10 px-6 md:px-16 py-16">
+      <div className="max-w-7xl mx-auto w-[90%]">
         <div className="mb-12">
-          <h1 className="text-6xl md:text-7xl font-bold text-white">
+          <h1 className="text-4xl md:text-7xl font-bold text-white">
             Wanderlust
           </h1>
           <p className="mt-4 max-w-xl">
@@ -12,7 +12,7 @@ const Footer = () => {
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 p-1 gap-10">
           {/* Newsletter */}
           <div>
             <h3 className="text-white mb-3 tracking-wide">NEWSLETTER</h3>
@@ -20,13 +20,13 @@ const Footer = () => {
               Subscribe for exclusive travel deals and inspiration.
             </p>
 
-            <div className="flex items-center bg-gray-800 px-4 py-3">
+            <div className="flex items-center bg-gray-800 px-4  py-3">
               <input
                 type="email"
                 placeholder="Enter email"
                 className="bg-transparent outline-none flex-1 text-sm"
               />
-              <span className="text-white text-lg">↗</span>
+             
             </div>
           </div>
 

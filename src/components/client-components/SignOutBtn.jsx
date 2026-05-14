@@ -2,6 +2,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { PiSignOutBold } from "react-icons/pi";
 
 const SignOutBtn = () => {
@@ -11,6 +12,7 @@ const SignOutBtn = () => {
 
     if (result?.data?.success) {
       router.refresh("/");
+      toast.success('Sign out Succesfull')
     }
   };
 

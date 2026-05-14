@@ -1,4 +1,6 @@
+
 import MyNavlink from "./MyNavlink";
+
 
 const AllNavlinks = () => {
   return (
@@ -8,6 +10,14 @@ const AllNavlinks = () => {
      <li><MyNavlink href={'/my-bookings'}>My Bookings</MyNavlink></li> 
 
      <li><MyNavlink href={'/new-destination'}>New Destination</MyNavlink></li> 
+         <li>
+          <MyNavlink href={"/profile"}>
+
+            
+              Profile
+            
+          </MyNavlink>
+        </li>
     </>
   );
 };
