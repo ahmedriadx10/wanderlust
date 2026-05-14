@@ -1,19 +1,7 @@
+
 import { destinationsGetById } from "@/lib/data";
 
-// const DestinationDetailsPage = async({params}) => {
-
-// console.log(destination)
-
-//   return (
-//     <div>
-//       <h2>Destination Details</h2>
-//     </div>
-//   );
-// };
-
-// export default DestinationDetailsPage;
-
-import { Button, Card, Input, Chip } from "@heroui/react";
+import { Button, Card, Input, Chip, DateField, Label } from "@heroui/react";
 import {
   HiLocationMarker,
   HiOutlineClock,
@@ -30,8 +18,11 @@ import { BsCheckCircleFill, BsShieldCheck } from "react-icons/bs";
 import Image from "next/image";
 import { EditModal } from "@/components/ui/EditModal";
 import { DeleteModal } from "@/components/ui/DeleteModal";
+import BookingCard from "@/components/ui/BookingCard";
+
 
 const DestinationDetailsPage = async ({ params }) => {
+
   const { id } = await params;
 
   const destination = await destinationsGetById(id);
@@ -47,6 +38,8 @@ const DestinationDetailsPage = async ({ params }) => {
     destinationName,
     _id,
   } = destination;
+
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 mt-5 font-sans">
@@ -120,50 +113,7 @@ const DestinationDetailsPage = async ({ params }) => {
         </div>
 
         {/* Right Side: Booking Card */}
-        <div>
-          <Card className="p-4 shadow border-none">
-            <div className="space-y-6">
-              <div>
-                <p className="text-gray-400 text-xs">Starting from</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-cyan-500">
-                    ${price}
-                  </span>
-                  <span className="text-gray-400 text-sm font-medium">
-                    per person
-                  </span>
-                </div>
-              </div>
-
-              <div className="bg-gray-100 py-5 px-2.5 font-semibold rounded-lg">
-                <p>{departureDate}</p>
-              </div>
-
-              <Button
-                color="primary"
-                size="lg"
-                className="w-full bg-(--primaryBlue) font-bold shadow-lg shadow-cyan-100"
-              >
-                Book Now
-              </Button>
-
-              <div className="space-y-3 text-sm text-gray-500 font-medium">
-                <div className="flex items-center gap-2">
-                  <BsCheckCircleFill className="text-green-500" />
-                  <span>Free cancellation up to 7 days</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <BsShieldCheck className="text-green-500" />
-                  <span>Travel insurance included</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MdHeadsetMic className="text-green-500" />
-                  <span>24/7 customer support</span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
+    <BookingCard destination={destination}/>
       </div>
     </div>
   );
