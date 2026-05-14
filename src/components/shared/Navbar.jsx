@@ -4,7 +4,25 @@ import Link from "next/link";
 import { FaUser } from "react-icons/fa";
 import { Button } from "@heroui/react";
 import AllNavlinks from "../ui/AllNavlinks";
-const Navbar = () => {
+import AuthLinks from "../ui/AuthLinks";
+import MyNavlink from "../ui/MyNavlink";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import SignOutBtn from "../client-components/SignOutBtn";
+const Navbar =async () => {
+
+const session=await auth.api.getSession({
+
+  headers:await headers()
+}
+)
+
+console.log(session)
+
+const user=session?.user
+
+
+
   return (
     <nav className="flex justify-between items-center p-5">
 
@@ -17,9 +35,8 @@ const Navbar = () => {
       </div>
 
 <ul className="flex items-center gap-5 font-medium ">
-<li className=""><Link href={'/profile'}><Button variant="ghost" className={' flex items-center'}><FaUser />Profile</Button></Link></li>
-<li className=""><Link href={'/login'}><Button variant="ghost" className={' flex items-center'}>Login</Button></Link></li>
-<li className=""><Link href={'/signup'}><Button variant="ghost" className={' flex items-center'}>Sign Up</Button></Link></li>
+<li><MyNavlink href={'/profile'}><Button variant=""  className={' flex items-center'}><FaUser />Profile</Button></MyNavlink></li>
+{session?.user?<SignOutBtn/>:<AuthLinks/>}
 </ul>
 
 
