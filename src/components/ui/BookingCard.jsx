@@ -23,7 +23,7 @@ const handleBooking=async()=>{
 
 if(!date){
 toast.error('Please add booking date')
-
+return;
 }
 
 const bookingData={
@@ -38,7 +38,7 @@ imageURL,
 departureDate:new Date(date).toDateString()
 }
 
-const req=await fetch('http://localhost:5000/bookings',{
+const req=await fetch(`http://localhost:5000/bookings/${user?.id}/${_id}`,{
   method:'POST',
   headers:{
     'Content-Type':'application/json'
@@ -49,7 +49,17 @@ const req=await fetch('http://localhost:5000/bookings',{
 
 const res=await req.json()
 
-console.log(res)
+if(res?.insertedId){
+toast.success(`Successfully booked ${destinationName}`)
+return;
+}
+
+if(res?.error){
+
+toast.error(`${res?.message}`)
+return
+}
+
 }
 
 

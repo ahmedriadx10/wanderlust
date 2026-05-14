@@ -2,11 +2,32 @@
 
 import { TrashBin } from "@gravity-ui/icons";
 import {AlertDialog, Button} from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 export function CancelBooking({booking}) {
 
+  const router=useRouter()
+
 const {destinationName,_id}=booking
-  return (
+
+const handleDelete=async()=>{
+
+const res=await fetch(`http://localhost:5000/bookings/${_id}`,{
+  method:'DELETE'
+})
+
+const deletedData=await res.json()
+
+console.log(deletedData)
+
+if(deletedData?.deletedCount>0){
+  router.refresh('/my-bookings')
+}
+
+
+} 
+
+return (
     <AlertDialog>
       <Button variant="" className={'rounded-none border border-red-500 text-red-500'}><TrashBin/> Cancel</Button>
       <AlertDialog.Backdrop>
@@ -27,7 +48,7 @@ const {destinationName,_id}=booking
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button slot="close" variant="danger">
+              <Button slot="close" variant="danger" onPress={handleDelete}>
                 Delete Booking
               </Button>
             </AlertDialog.Footer>

@@ -9,7 +9,6 @@ import { CancelBooking } from "./CancelBooking";
 const MyBookingCard = ({ booking }) => {
   const {
     _id,
-    userId,
     imageURL,
     price,
     departureDate,
@@ -18,7 +17,7 @@ const MyBookingCard = ({ booking }) => {
     country
   } = booking;
 
-  console.log(imageURL)
+
 
   return <div className="flex  flex-col md:flex-row gap-5 items-center border border-zinc-200 p-5">
 
